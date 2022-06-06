@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "gatsby";
+import { motion } from "framer-motion";
 
 //Styled components
 import { Container, Flex } from "../styles/globalStyles";
@@ -9,6 +10,7 @@ import {
   CloseNav,
   NavList,
   NavFooter,
+  NavVideos,
 } from "../styles/navigationStyles";
 
 const navRoutes = [
@@ -45,6 +47,12 @@ const navRoutes = [
 ];
 
 const Navigation = () => {
+  const [revealVideo, setRevealVideo] = useState({
+    show: true,
+    video: "featured-video.mp4",
+    key: "0",
+  });
+
   return (
     <Nav>
       <Container>
@@ -64,7 +72,17 @@ const Navigation = () => {
             {navRoutes.map((route) => (
               <li key={route.id}>
                 <Link to={`/project/${route.path}`}>
-                  <div className="link">
+                  <motion.div
+                    initial={{ x: -108 }}
+                    whileHover={{
+                      x: -40,
+                      transition: {
+                        duration: 0.4,
+                        ease: [0.6, 0.05, -0.01, 0.9],
+                      },
+                    }}
+                    className="link"
+                  >
                     <span className="arrow">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -78,13 +96,24 @@ const Navigation = () => {
                       </svg>
                     </span>
                     {route.title}
-                  </div>
+                  </motion.div>
                 </Link>
               </li>
             ))}
           </ul>
         </NavList>
-        <NavFooter></NavFooter>
+        <NavFooter> </NavFooter>
+        <NavVideos>
+          <div className="reveal"></div>
+          <div className="video">
+            <video
+              src={require(`../assets/video/${revealVideo.video}`)}
+              loop
+              muted
+              autoPlay
+            ></video>
+          </div>
+        </NavVideos>
       </Container>
     </Nav>
   );
