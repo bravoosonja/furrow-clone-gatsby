@@ -8,6 +8,7 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 //components
 import Header from "./header";
 import CustomCursor from "./customCursor";
+import Navigation from "./navigation";
 
 //context
 import {
@@ -73,6 +74,7 @@ const Layout = ({ children }) => {
       <GlobalStyle />
       <CustomCursor />
       <Header onCursor={onCursor} />
+      <Navigation />
       <main>{children}</main>
     </ThemeProvider>
   );
