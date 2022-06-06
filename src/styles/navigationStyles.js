@@ -80,7 +80,7 @@ export const NavVideos = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 28%;
+  left: 18%;
   z-index: -1;
   height: 100%;
   width: 100%;

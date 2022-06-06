@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 //Styled components
 import { Container, Flex } from "../styles/globalStyles";
@@ -48,7 +48,7 @@ const navRoutes = [
 
 const Navigation = () => {
   const [revealVideo, setRevealVideo] = useState({
-    show: true,
+    show: false,
     video: "featured-video.mp4",
     key: "0",
   });
@@ -70,7 +70,23 @@ const Navigation = () => {
         <NavList>
           <ul>
             {navRoutes.map((route) => (
-              <li key={route.id}>
+              <motion.li
+                key={route.id}
+                onHoverStart={() =>
+                  setRevealVideo({
+                    show: true,
+                    video: route.video,
+                    key: route.id,
+                  })
+                }
+                onHoverEnd={() =>
+                  setRevealVideo({
+                    show: false,
+                    video: route.video,
+                    key: route.id,
+                  })
+                }
+              >
                 <Link to={`/project/${route.path}`}>
                   <motion.div
                     initial={{ x: -108 }}
@@ -98,20 +114,50 @@ const Navigation = () => {
                     {route.title}
                   </motion.div>
                 </Link>
-              </li>
+              </motion.li>
             ))}
           </ul>
         </NavList>
         <NavFooter> </NavFooter>
         <NavVideos>
-          <div className="reveal"></div>
+          <motion.div
+            animate={{ width: revealVideo.show ? 0 : "100%" }}
+            className="reveal"
+          ></motion.div>
           <div className="video">
-            <video
-              src={require(`../assets/video/${revealVideo.video}`)}
-              loop
-              muted
-              autoPlay
-            ></video>
+            <AnimatePresence initial={false} exitBeforeEnter>
+              {/* <motion.video
+                key={revealVideo.key}
+                src={require(`../assets/video/${revealVideo.video}`)}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                animate={{
+                  opacity: 1,
+                }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                loop
+                autoPlay
+              ></motion.video> */}
+              <motion.video
+                controls
+                key={revealVideo.key}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                  duration: 0.2,
+                  ease: "easeInOut",
+                }}
+                loop
+                muted
+                autoPlay="autoPlay"
+              >
+                <source
+                  src={require(`../assets/video/${revealVideo.video}`)}
+                  type="video/mp4"
+                ></source>
+              </motion.video>
+            </AnimatePresence>
           </div>
         </NavVideos>
       </Container>
