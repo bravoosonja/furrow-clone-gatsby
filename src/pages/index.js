@@ -11,7 +11,7 @@ import {
 } from "../context/globalContext";
 
 const IndexPage = (props) => {
-  const { currentTheme, cursorStyles } = useGlobalStateContext();
+  const { cursorStyles } = useGlobalStateContext();
   const dispatch = useGlobalDispatchContext();
 
   const onCursor = (cursorType) => {
