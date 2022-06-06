@@ -8,6 +8,9 @@ import { createGlobalStyle, ThemeProvider } from "styled-components";
 //components
 import Header from "./header";
 
+//context
+import { useGlobalStateContext } from "../context/globalContext";
+
 const Layout = ({ children }) => {
   const GlobalStyle = createGlobalStyle`
     @import 'node_modules/modern-normalize/modern-normalize.css';
@@ -53,8 +56,10 @@ const Layout = ({ children }) => {
     red: " #ea291e",
   };
 
+  const { currentTheme } = useGlobalStateContext();
+
   return (
-    <ThemeProvider theme={lightTheme}>
+    <ThemeProvider theme={currentTheme === "dark" ? darkTheme : lightTheme}>
       <GlobalStyle />
       <Header />
       <main>{children}</main>

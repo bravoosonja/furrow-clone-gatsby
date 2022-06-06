@@ -18,6 +18,7 @@ export const Logo = styled.div`
     color: ${(props) => props.theme.text};
   }
 
+  //the red circle within logo
   span {
     height: 1rem;
     width: 1rem;
@@ -30,4 +31,21 @@ export const Logo = styled.div`
   }
 `;
 
-export const Menu = styled.div``;
+export const Menu = styled.div`
+  button {
+    transform-origin: center;
+    border: none;
+    padding: 20px;
+    background: none;
+    outline: none;
+
+    //hamburger menu
+    span {
+      width: 36px;
+      height: 8px;
+      display: block;
+      background: ${(props) => props.theme.text};
+      margin: 8px;
+    }
+  }
+`;
