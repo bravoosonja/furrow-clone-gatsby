@@ -8,14 +8,23 @@ export const Container = styled.div`
   width: auto;
   height: 100%;
 
-  @media (min-width: 1024px) {
-    max-width: 960px;
+  //mobiles (portrait)
+  @media (min-width: 320px) and (max-width: 480px) {
   }
-  @media (min-width: 1216px) {
-    max-width: 1152px;
+
+  //tablets (landscape)
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   }
-  @media (min-width: 1408px) {
-    max-width: 1244px;
+
+  //tablets (portrait)
+  @media (min-width: 768px) and (max-width: 1280px) {
+  }
+
+  //laptop & desktop
+  @media (min-width: 1025px) and (max-width: 1280px) {
+  }
+  //desktop
+  @media (min-width: 1281px) {
   }
 
   ${(props) =>
@@ -55,4 +64,29 @@ export const Flex = styled.div`
     css`
       height: 0;
     `}
+`;
+
+export const Cursor = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  background: ${(props) => props.theme.red};
+  border-radius: 100%;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease-in-out;
+  transition-property: width, height, border;
+  will-change: width, height, transform, border;
+  pointer-events: none;
+  z-index: 999;
+  &.pointer {
+    border: 4px solid ${(props) => props.theme.text} !important;
+  }
+  &.hovered {
+    background: transparent !important;
+    width: 56px;
+    height: 56px;
+    border: 4px solid ${(props) => props.theme.red};
+  }
 `;
