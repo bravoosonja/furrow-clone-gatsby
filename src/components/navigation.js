@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "gatsby";
-import { motion, AnimatePresence } from "framer-motion";
-
-//Styled components
+//Styled Components
 import { Container, Flex } from "../styles/globalStyles";
 import {
   Nav,
   NavHeader,
-  CloseNav,
   NavList,
   NavFooter,
   NavVideos,
+  CloseNav,
 } from "../styles/navigationStyles";
+import { FooterContent, FooterSocial } from "../styles/footerStyles";
+//Icons
+import { Instagram, Facebook, Vimeo } from "../assets/svg/social-icons";
+//Framer Motion
+import { motion, AnimatePresence } from "framer-motion";
 
 const navRoutes = [
   {
@@ -46,7 +49,7 @@ const navRoutes = [
   },
 ];
 
-const Navigation = (toggleMenu, setToggleMenu) => {
+const Navigation = ({ toggleMenu, setToggleMenu, onCursor }) => {
   const [revealVideo, setRevealVideo] = useState({
     show: false,
     video: "featured-video.mp4",
@@ -66,8 +69,12 @@ const Navigation = (toggleMenu, setToggleMenu) => {
             <Container>
               <NavHeader>
                 <Flex spaceBetween noHeight>
-                  <h2>Projects</h2>
-                  <CloseNav onClick={() => setToggleMenu(!toggleMenu)}>
+                  <h2 to="/">Projects</h2>
+                  <CloseNav
+                    onClick={() => setToggleMenu(!toggleMenu)}
+                    onMouseEnter={() => onCursor("pointer")}
+                    onMouseLeave={onCursor}
+                  >
                     <button>
                       <span></span>
                       <span></span>
@@ -80,6 +87,8 @@ const Navigation = (toggleMenu, setToggleMenu) => {
                   {navRoutes.map((route) => (
                     <motion.li
                       key={route.id}
+                      onMouseEnter={() => onCursor("pointer")}
+                      onMouseLeave={onCursor}
                       onHoverStart={() =>
                         setRevealVideo({
                           show: true,
@@ -95,9 +104,10 @@ const Navigation = (toggleMenu, setToggleMenu) => {
                         })
                       }
                     >
-                      <Link to={`/project/${route.path}`}>
+                      <Link to={`/projects${route.path}`}>
                         <motion.div
                           initial={{ x: -108 }}
+                          className="link"
                           whileHover={{
                             x: -40,
                             transition: {
@@ -105,19 +115,18 @@ const Navigation = (toggleMenu, setToggleMenu) => {
                               ease: [0.6, 0.05, -0.01, 0.9],
                             },
                           }}
-                          className="link"
                         >
                           <span className="arrow">
-                            <svg
+                            <motion.svg
                               xmlns="http://www.w3.org/2000/svg"
                               viewBox="0 0 101 57"
                             >
                               <path
                                 d="M33 34H0V24h81.429L66 7.884 73.548 0l19.877 20.763.027-.029L101 28.618 73.829 57l-7.548-7.884L80.753 34H33z"
-                                fill="#FFF"
+                                fill="#000"
                                 fillRule="evenodd"
                               ></path>
-                            </svg>
+                            </motion.svg>
                           </span>
                           {route.title}
                         </motion.div>
@@ -126,47 +135,63 @@ const Navigation = (toggleMenu, setToggleMenu) => {
                   ))}
                 </ul>
               </NavList>
-              <NavFooter> </NavFooter>
+              <NavFooter>
+                <Flex spaceBetween>
+                  <FooterContent>
+                    <p>info@furrow.studio</p>
+                  </FooterContent>
+                  <FooterContent wider>
+                    <p>902.315.1279</p>
+                  </FooterContent>
+                  <FooterSocial>
+                    <a
+                      onMouseEnter={() => onCursor("pointer")}
+                      onMouseLeave={onCursor}
+                      href="/"
+                      target="_blank"
+                    >
+                      <Instagram />
+                    </a>
+                    <a
+                      onMouseEnter={() => onCursor("pointer")}
+                      onMouseLeave={onCursor}
+                      href="/"
+                      target="_blank"
+                    >
+                      <Facebook />
+                    </a>
+                    <a
+                      onMouseEnter={() => onCursor("pointer")}
+                      onMouseLeave={onCursor}
+                      href="/"
+                      target="_blank"
+                    >
+                      <Vimeo />
+                    </a>
+                  </FooterSocial>
+                </Flex>
+              </NavFooter>
               <NavVideos>
                 <motion.div
                   animate={{ width: revealVideo.show ? 0 : "100%" }}
                   className="reveal"
                 ></motion.div>
-                <div className="video">
+                <motion.div className="video">
                   <AnimatePresence initial={false} exitBeforeEnter>
-                    {/* <motion.video
-                    key={revealVideo.key}
-                    src={require(`../assets/video/${revealVideo.video}`)}
-                    initial={{ opacity: 0 }}
-                    exit={{ opacity: 0 }}
-                    animate={{
-                      opacity: 1,
-                    }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                    loop
-                    autoPlay
-                  ></motion.video> */}
                     <motion.video
-                      controls
                       key={revealVideo.key}
+                      src={require(`../assets/video/${revealVideo.video}`)}
                       initial={{ opacity: 0 }}
                       exit={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
+                      animate={{
+                        opacity: 1,
                       }}
+                      transition={{ duration: 0.2, ease: "easeInOut" }}
                       loop
-                      muted
-                      autoPlay="autoPlay"
-                    >
-                      <source
-                        src={require(`../assets/video/${revealVideo.video}`)}
-                        type="video/mp4"
-                      ></source>
-                    </motion.video>
+                      autoPlay
+                    ></motion.video>
                   </AnimatePresence>
-                </div>
+                </motion.div>
               </NavVideos>
             </Container>
           </Nav>

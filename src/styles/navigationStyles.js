@@ -8,7 +8,7 @@ export const Nav = styled(motion.div)`
   width: 100%;
   height: 100%;
   display: block;
-  background: ${(props) => props.theme.red};
+  background: #ea281e;
   color: #000;
   z-index: 100;
   overflow: hidden;
@@ -21,7 +21,6 @@ export const NavHeader = styled.div`
     color: ${(props) => props.theme.background};
   }
 `;
-
 export const CloseNav = styled.div`
   button {
     transform-origin: center;
@@ -62,25 +61,36 @@ export const NavList = styled.div`
         .arrow {
           height: 76px;
           margin-right: 8px;
-          svg {
-            width: 100px;
-            path {
-              fill: ${(props) => props.theme.background};
-            }
-          }
+        }
+      }
+      svg {
+        width: 100px;
+        path {
+          fill: ${(props) => props.theme.background};
         }
       }
     }
   }
 `;
-
-export const NavFooter = styled.div``;
+export const NavFooter = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 56px 0px;
+  p {
+    color: ${(props) => props.theme.background};
+  }
+  svg path {
+    fill: ${(props) => props.theme.background};
+  }
+`;
 
 export const NavVideos = styled.div`
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 18%;
+  left: 25%;
   z-index: -1;
   height: 100%;
   width: 100%;
@@ -93,6 +103,7 @@ export const NavVideos = styled.div`
     bottom: 0;
     left: 0;
   }
+
   .video {
     background: #000;
     position: absolute;
