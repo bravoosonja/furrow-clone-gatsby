@@ -15,44 +15,50 @@ import { FooterContent, FooterSocial } from "../styles/footerStyles";
 import { Instagram, Facebook, Vimeo } from "../assets/svg/social-icons";
 //Framer Motion
 import { motion, AnimatePresence } from "framer-motion";
+//Videos
+import FeaturedVideo from "../assets/video/featured-video.mp4";
+import Easy from "../assets/video/easy.mp4";
+import Zero from "../assets/video/make-it-zero.mp4";
+import Island from "../assets/video/it-takes-an-island.mp4";
+import Beaches from "../assets/video/50-beaches.mp4";
 
 const navRoutes = [
   {
     id: 0,
     title: "not humble",
     path: "/not-humble",
-    video: "featured-video.mp4",
+    video: FeaturedVideo,
   },
   {
     id: 1,
     title: "bleeping easy",
     path: "/bleeping-easy",
-    video: "easy.mp4",
+    video: Easy,
   },
   {
     id: 2,
     title: "make it zero",
     path: "/make-it-zero",
-    video: "make-it-zero.mp4",
+    video: Zero,
   },
   {
     id: 3,
     title: "it takes an island",
     path: "/it-takes-an-island",
-    video: "it-takes-an-island.mp4",
+    video: Island,
   },
   {
     id: 4,
     title: "50 beaches",
     path: "/50-beaches",
-    video: "50-beaches.mp4",
+    video: Beaches,
   },
 ];
 
 const Navigation = ({ toggleMenu, setToggleMenu, onCursor }) => {
   const [revealVideo, setRevealVideo] = useState({
     show: false,
-    video: "featured-video.mp4",
+    video: { FeaturedVideo },
     key: "0",
   });
 
@@ -179,10 +185,10 @@ const Navigation = ({ toggleMenu, setToggleMenu, onCursor }) => {
                 <motion.div className="video">
                   <AnimatePresence initial={false} exitBeforeEnter>
                     <motion.video
-                      preload="auto"
-                      autoplay
-                      muted
+                      controls
                       loop
+                      autoPlay
+                      preload="auto"
                       key={revealVideo.key}
                       initial={{ opacity: 0 }}
                       exit={{ opacity: 0 }}
@@ -191,10 +197,7 @@ const Navigation = ({ toggleMenu, setToggleMenu, onCursor }) => {
                       }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
                     >
-                      <source
-                        src={require(`../assets/video/${revealVideo.video}`)}
-                        type="video/mp4"
-                      />
+                      <source src={`${revealVideo.video}`} type="video/mp4" />
                     </motion.video>
                   </AnimatePresence>
                 </motion.div>
