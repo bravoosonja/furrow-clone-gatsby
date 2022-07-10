@@ -1,12 +1,17 @@
 import { useState, useEffect } from "react";
 
+// check if window is defined
+const isBrowser = typeof window !== "undefined";
+
 //custom hook to determine the canvas size
 export default function useWindowSize() {
   function getSize() {
-    return {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
+    if (isBrowser) {
+      return {
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    }
   }
 
   const [windowSize, setWindowSize] = useState(getSize);
