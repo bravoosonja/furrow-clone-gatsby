@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
 import BannerVideo from "../../assets/video/video.mp4";
-import { motion } from "framer-motion";
-
 import {
   Banner,
   Video,

@@ -10,19 +10,18 @@ export const HeaderNav = styled(motion.div)`
   left: 0;
   z-index: 99;
 `;
-
 export const Logo = styled.div`
   a {
     font-size: 1.8rem;
+    text-decoration: none;
     font-weight: 800;
+    color: #000;
     color: ${(props) => props.theme.text};
   }
-
-  //the red circle within logo
   span {
-    height: 1rem;
-    width: 1rem;
-    background: ${(props) => props.theme.red};
+    height: 16px;
+    width: 16px;
+    background: #ea291e;
     margin: 0 4px;
     border-radius: 100%;
     display: inline-block;
@@ -38,8 +37,6 @@ export const Menu = styled.div`
     padding: 20px;
     background: none;
     outline: none;
-
-    //hamburger menu
     span {
       width: 36px;
       height: 8px;

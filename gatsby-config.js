@@ -18,12 +18,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `gatsby-furrow-clone`,
+        short_name: `furrow-clons`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
+        icon: "src/assets/svg",
       },
     },
     `gatsby-plugin-styled-components`,
