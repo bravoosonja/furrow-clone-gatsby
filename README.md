@@ -22,7 +22,7 @@ The aim of the project is to clone Furrow website.
 
 # Current issues
 1. Videos in `navigation.js` do not autoPlay. 
-```
+```JavaScript
 <motion.video
     controls
     key={revealVideo.key}
@@ -44,7 +44,7 @@ The aim of the project is to clone Furrow website.
 </motion.video>
 ```
 2. The same codes for global state context for custom cursor are used twice. Duplicated in `index.js` 
-```
+```JavaScript
  const { cursorStyles } = useGlobalStateContext();
   const dispatch = useGlobalDispatchContext();
 
