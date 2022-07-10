@@ -179,17 +179,23 @@ const Navigation = ({ toggleMenu, setToggleMenu, onCursor }) => {
                 <motion.div className="video">
                   <AnimatePresence initial={false} exitBeforeEnter>
                     <motion.video
+                      preload="auto"
+                      autoplay
+                      muted
+                      loop
                       key={revealVideo.key}
-                      src={require(`../assets/video/${revealVideo.video}`)}
                       initial={{ opacity: 0 }}
                       exit={{ opacity: 0 }}
                       animate={{
                         opacity: 1,
                       }}
                       transition={{ duration: 0.2, ease: "easeInOut" }}
-                      loop
-                      autoPlay
-                    ></motion.video>
+                    >
+                      <source
+                        src={require(`../assets/video/${revealVideo.video}`)}
+                        type="video/mp4"
+                      />
+                    </motion.video>
                   </AnimatePresence>
                 </motion.div>
               </NavVideos>

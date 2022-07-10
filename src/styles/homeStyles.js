@@ -188,7 +188,6 @@ export const AccordionHeader = styled(motion.div)`
   font-weight: 600;
   font-size: 1.15rem;
   margin: 8px 0;
-  }
 `;
 export const AccordionIcon = styled.div`
   display: flex;

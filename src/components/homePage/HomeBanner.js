@@ -11,6 +11,7 @@ import {
   Canvas,
   Headline,
 } from "../../styles/homeStyles";
+import VideoMain from "../../assets/video/video.mp4";
 
 const HomeBanner = ({ onCursor }) => {
   const size = useWindowSize();
@@ -90,14 +91,9 @@ const HomeBanner = ({ onCursor }) => {
   return (
     <Banner>
       <Video>
-        <video
-          height="100%"
-          width="100%"
-          loop
-          autoPlay
-          muted
-          src={require("../../assets/video/video.mp4")}
-        />
+        <video controls loop autoPlay muted>
+          <source src={VideoMain} type="video/mp4" />
+        </video>
       </Video>
       <Canvas
         height={size.height}

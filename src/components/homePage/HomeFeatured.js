@@ -12,6 +12,7 @@ import {
 } from "../../styles/homeStyles";
 // Scroll Animations
 import { useInView } from "react-intersection-observer";
+import VideoFeatured from "../../assets/video/featured-video.mp4";
 
 const HomeFeatured = ({ onCursor }) => {
   const [hovered, setHovered] = useState(false);
@@ -79,12 +80,9 @@ const HomeFeatured = ({ onCursor }) => {
             </h2>
           </FeaturedContent>
           <FeaturedVideo>
-            <video
-              loop
-              autoPlay
-              muted
-              src={require("../../assets/video/featured-video.mp4")}
-            ></video>
+            <video controls loop autoPlay muted>
+              <source src={VideoFeatured} type="video/mp4" />
+            </video>
           </FeaturedVideo>
         </Link>
       </Container>
