@@ -17,6 +17,7 @@ const HomeBanner = ({ onCursor }) => {
   const size = useWindowSize();
   const { currentTheme } = useGlobalStateContext();
   let canvas = useRef(null);
+
   useEffect(() => {
     let renderingElement = canvas.current;
     // create an offscreen canvas only for the drawings
@@ -66,7 +67,7 @@ const HomeBanner = ({ onCursor }) => {
         renderingCtx.drawImage(drawingElement, 0, 0);
       }
     });
-  });
+  }, [currentTheme, size.height, size.width]);
 
   const container = {
     initial: { y: 800 },
