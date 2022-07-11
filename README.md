@@ -80,6 +80,16 @@ const navRoutes = [
   </motion.video>
 ```
 
+3. During the process of building production, the build was stuck on 'Building static HTML for pages'. To remedy this, added the following line to ``useWindowSize()```
+
+```JavaScript
+//check if window is defined
+const isBrowser = typeof window !=="undefined"
+...
+if (isBrowser){...}
+
+```
+
 # Acknowledgement
 
 - [Furrow original website](https://furrow.studio/)
